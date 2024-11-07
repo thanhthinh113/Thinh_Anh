@@ -37,7 +37,6 @@ export default function Page16() {
                         <View style={styles.logo1}>
                             <Image source={require('../images/Vector1.png')} style={styles.logo} />
                         </View>
-
                         <View style={styles.textContainer1}>
                             <Text style={styles.title1}>Add your work email to unlock extra</Text>
                             <Text style={styles.description1}>perks for business trips, like</Text>
