@@ -25,7 +25,7 @@ export default function Page16() {
         }
     };
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
             <View style={styles.container}>
                 <Text style={styles.title}>Inbox</Text>
                 <View style={styles.tabContainer1} >
@@ -74,7 +74,7 @@ export default function Page16() {
                     <Text style={styles.tabText}>Profile</Text>
                 </TouchableOpacity>
             </View>
-        </SafeAreaView>
+        </View>
     );
 }
  
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
   tabContainer1: {
     backgroundColor: "#000",
     height: "100%",
+    alignItems:"center"
 },
 tabContainer12:{
     alignItems:"center"
@@ -167,8 +168,7 @@ tabContainer12:{
   },
   container1: {
     flexDirection: "row",
-    width:"97%",
-    justifyContent:"center"
+    marginRight:10
   },
   logo: {
     width: 28,
