@@ -11,6 +11,11 @@ export default function Page15() {
 
     const handleTabPress = (tab) => {
         setSelectedTab(tab);
+        if (tab === 'messages') {
+            navigation.navigate('Page15');
+        } else if (tab === 'notifications') {
+            navigation.navigate('Page16');
+        }
     };
 
     return (
