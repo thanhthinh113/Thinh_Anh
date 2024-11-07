@@ -9,9 +9,6 @@ export default function Page14() {
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="white" />
-        </TouchableOpacity>
         <Text style={styles.title}>Trips</Text>
 
         <View style={styles.contentContainer}>
