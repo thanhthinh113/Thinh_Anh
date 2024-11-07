@@ -14,20 +14,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
-import Page13 from "./Page13";
 
-const Card = ({ imageSource, title, time }) => {
-  return (
-    <View style={styles.card}>
-      <Image source={imageSource} style={styles.cardImage} />
-      <View style={styles.cardContent}>
-        <Text style={styles.cardTitle}>{title}</Text>
-
-        <Text style={styles.cardTime}>{time}</Text>
-      </View>
-    </View>
-  );
-};
 export default function Page06() {
   const navigation = useNavigation();
   const nearbyPlaces = [
@@ -119,8 +106,7 @@ export default function Page06() {
 
         <View style={styles.content}>
           <View style={styles.title}>
-            <Text style={styles.title1}>Not sure where to go?</Text>
-            <Text style={styles.title2}>Perfect.</Text>
+            <Text style={styles.title1}>Not sure where to go?{"\n"}Perfect.</Text>
           </View>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>I'm flexible</Text>
@@ -254,12 +240,9 @@ const styles = StyleSheet.create({
   },
   title1: {
     fontSize: 20,
+    fontWeight:"bold",
     color: "#FFFFFF",
-  },
-  title2: {
-    fontSize: 20,
-    color: "#FFFFFF",
-    marginLeft: 55,
+    textAlign:"center"
   },
   buttonText: {
     color: "#FFFFFF",
@@ -270,18 +253,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#3090C9", // Màu nền xanh cho ô
-    borderRadius: 10,
+    borderRadius: 4,
     margin: 5,
-    width: 200,
+    width: 250,
     marginTop: 20,
-    height: 55,
+    height: 70,
+  },
+  title4:{
+    fontWeight:"bold",
+    color:"white"
   },
   image: {
-    width: 50,
-    height: 55,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderRadius: 10,
+    width: 80,
+    height: 70,
+    borderRadius:4
   },
   infoContainer: {
     padding: 10,
@@ -312,7 +297,7 @@ const styles = StyleSheet.create({
   },
   image5: {
     flex: 1,
-    borderRadius: 10,
+    borderRadius: 4,
     width: 250,
     height: 250,
     marginTop: 10,
