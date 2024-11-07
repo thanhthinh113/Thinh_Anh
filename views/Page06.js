@@ -13,9 +13,8 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from "@expo/vector-icons";
 import Page13 from "./Page13";
-
 
 const Card = ({ imageSource, title, time }) => {
   return (
@@ -25,7 +24,6 @@ const Card = ({ imageSource, title, time }) => {
         <Text style={styles.cardTitle}>{title}</Text>
 
         <Text style={styles.cardTime}>{time}</Text>
-
       </View>
     </View>
   );
@@ -33,29 +31,60 @@ const Card = ({ imageSource, title, time }) => {
 export default function Page06() {
   const navigation = useNavigation();
   const nearbyPlaces = [
-    { Image: require('../images/image29.png'), title: 'Los Angeles', time: '15 minute drive' },
-    { Image: require('../images/image30.png'), title: 'Las Vegas', time: '5 hours' },
-    { Image: require('../images/image31.png'), title: 'San Diego', time: '2.5 hour drive' },
-    { Image: require('../images/image32.png'), title: 'Henderson', time: '5.5 hours' },
-    { Image: require('../images/image29.png'), title: 'Los Angeles', time: '15 minute drive' },
-    { Image: require('../images/image30.png'), title: 'Las Vegas', time: '5 hours' },
-    { Image: require('../images/image31.png'), title: 'San Diego', time: '2.5 hour drive' },
-    { Image: require('../images/image32.png'), title: 'Henderson', time: '5.5 hours' },
+    {
+      Image: require("../images/image29.png"),
+      title: "Los Angeles",
+      time: "15 minute drive",
+    },
+    {
+      Image: require("../images/image30.png"),
+      title: "Las Vegas",
+      time: "5 hours",
+    },
+    {
+      Image: require("../images/image31.png"),
+      title: "San Diego",
+      time: "2.5 hour drive",
+    },
+    {
+      Image: require("../images/image32.png"),
+      title: "Henderson",
+      time: "5.5 hours",
+    },
+    {
+      Image: require("../images/image29.png"),
+      title: "Los Angeles",
+      time: "15 minute drive",
+    },
+    {
+      Image: require("../images/image30.png"),
+      title: "Las Vegas",
+      time: "5 hours",
+    },
+    {
+      Image: require("../images/image31.png"),
+      title: "San Diego",
+      time: "2.5 hour drive",
+    },
+    {
+      Image: require("../images/image32.png"),
+      title: "Henderson",
+      time: "5.5 hours",
+    },
   ];
   const places = [
     {
-      image: require('../images/image33.png'),
-      title1: 'Los Angeles',
+      image: require("../images/image33.png"),
+      title1: "Los Angeles",
     },
     {
-      image: require('../images/image34.png'),
-      title1: 'Las Vegas',
+      image: require("../images/image34.png"),
+      title1: "Las Vegas",
     },
     {
-      image: require('../images/image43.png'),
-      title1: 'San Diego',
+      image: require("../images/image43.png"),
+      title1: "San Diego",
     },
-
   ];
   const renderItem = ({ item }) => (
     <View style={styles.card}>
@@ -73,75 +102,87 @@ export default function Page06() {
     </View>
   );
   return (
-   <View style={styles.container}>
-     <ScrollView >
-      <View style={styles.header1}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="white" />
-        </TouchableOpacity>
-        <View style={styles.header}>
-          <Image
-            source={require('../images/Group.png')}
-            style={styles.searchIcon}
-          />
-          <TextInput
-            placeholder="Where are you going?" placeholderTextColor={'#FFFFFF80'}
-            style={styles.input}
-          />
+    <View style={styles.container}>
+      <ScrollView>
+        <View style={styles.header1}>
+          <View style={styles.header}>
+            <TouchableOpacity style={styles.searchIconWrapper}>
+              <Ionicons name="search" size={20} color="#FFFFFF80" />
+            </TouchableOpacity>
+            <TextInput
+              placeholder="Where are you going?"
+              placeholderTextColor={"#FFFFFF80"}
+              style={styles.input}
+            />
+          </View>
         </View>
-      </View>
 
-      <View style={styles.content}>
-        <View style={styles.title}>
-          <Text style={styles.title1}>Not sure where to go?</Text>
-          <Text style={styles.title2}>Perfect.</Text>
+        <View style={styles.content}>
+          <View style={styles.title}>
+            <Text style={styles.title1}>Not sure where to go?</Text>
+            <Text style={styles.title2}>Perfect.</Text>
+          </View>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>I'm flexible</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>I'm flexible</Text>
+        <View style={styles.content1}>
+          <Text style={styles.subtitle}>Explore nearby</Text>
+          <FlatList
+            data={nearbyPlaces}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={renderItem}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+          <Text style={styles.subtitle}>Live anywhere</Text>
+          <FlatList
+            data={places}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={renderItem1}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+      </ScrollView>
+      <View style={styles.navigationBar}>
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("Page06")}
+        >
+          <FontAwesome5 name="search" size={24} color="white" />
+          <Text style={styles.tabText}>Explore</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("Page13")}
+        >
+          <FontAwesome5 name="heart" size={24} color="white" />
+          <Text style={styles.tabText}>Wishlists</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("Page14")}
+        >
+          <FontAwesome5 name="plane-departure" size={24} color="white" />
+          <Text style={styles.tabText}>Trips</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("Page15")}
+        >
+          <FontAwesome5 name="comment" size={24} color="white" />
+          <Text style={styles.tabText}>Inbox</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("Page17")}
+        >
+          <FontAwesome5 name="user" size={24} color="white" />
+          <Text style={styles.tabText}>Profile</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.content1}>
-        <Text style={styles.subtitle}>Explore nearby</Text>
-        <FlatList
-          data={nearbyPlaces}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={renderItem}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
-        <Text style={styles.subtitle}>Live anywhere</Text>
-        <FlatList
-          data={places}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={renderItem1}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
-    </ScrollView>
-    <View style={styles.navigationBar}>
-      <TouchableOpacity style={styles.tab} onPress={()=>navigation.navigate("Page06")}>
-        <FontAwesome5 name="search" size={24} color="white" />
-        <Text style={styles.tabText}>Explore</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.tab} onPress={()=>navigation.navigate("Page13")} >
-        <FontAwesome5 name="heart" size={24} color="white" />
-        <Text style={styles.tabText}>Wishlists</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.tab} onPress={()=>navigation.navigate("Page14")}>
-        <FontAwesome5 name="plane-departure" size={24} color="white" />
-        <Text style={styles.tabText}>Trips</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.tab} onPress={()=>navigation.navigate("Page15")}>
-        <FontAwesome5 name="comment" size={24} color="white" />
-        <Text style={styles.tabText}>Inbox</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.tab} onPress={()=>navigation.navigate("Page17")}>
-        <FontAwesome5 name="user" size={24} color="white" />
-        <Text style={styles.tabText}>Profile</Text>
-      </TouchableOpacity>
     </View>
-   </View>
   );
 }
 const styles = StyleSheet.create({
@@ -152,7 +193,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#222",
-    width: '400px',
+    width: "400px",
   },
   button: {
     marginTop: 20,
@@ -161,8 +202,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#1e1e1e",
     borderRadius: 20,
     width: 130,
-    borderWidth: 1,
-    borderColor: '#FFFFFF',
+    borderWidth: 0.3,
+    borderColor: "#FFFFFF",
   },
   text: {
     color: "white",
@@ -171,68 +212,64 @@ const styles = StyleSheet.create({
   },
   content: {
     marginTop: 20,
-    alignItems: 'center',
-
+    alignItems: "center",
   },
   content1: {
     marginTop: 100,
-    width: '100%',
-    backgroundColor: 'black',
+    width: "100%",
+    backgroundColor: "black",
   },
   subtitle: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     marginTop: 50,
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginLeft: 10,
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingHorizontal: 10,
     borderRadius: 10,
-    backgroundColor: 'black',
+    backgroundColor: "black",
     borderRadius: 10,
-    width: '80%',
-    marginLeft: 25,
+    width: "80%",
   },
   header1: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    width: '100%',
-    paddingHorizontal: 20,
-    marginTop: 40,
+    flexDirection: "row",
+    marginTop: 70,
+    justifyContent: "center",
   },
   input: {
-    color: '#FFFFFF80',
-    marginLeft: 70,
+    color: "#FFFFFF80",
+    padding: 10,
+    paddingLeft: 50,
   },
   title: {
     fontSize: 20,
-    color: '#FFFFFF',
-    textAlign: 'center',
+    color: "#FFFFFF",
+    textAlign: "center",
     marginTop: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   title1: {
     fontSize: 20,
-    color: '#FFFFFF',
+    color: "#FFFFFF",
   },
   title2: {
     fontSize: 20,
-    color: '#FFFFFF',
-    marginLeft: 55
+    color: "#FFFFFF",
+    marginLeft: 55,
   },
   buttonText: {
-    color: '#FFFFFF',
-    textAlign: 'center',
-
+    color: "#FFFFFF",
+    textAlign: "center",
   },
   card: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#3090C9', // Màu nền xanh cho ô
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#3090C9", // Màu nền xanh cho ô
     borderRadius: 10,
     margin: 5,
     width: 200,
@@ -244,26 +281,26 @@ const styles = StyleSheet.create({
     height: 55,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    borderRadius:10
+    borderRadius: 10,
   },
   infoContainer: {
     padding: 10,
   },
   title: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
+    fontWeight: "bold",
+    color: "#fff",
   },
   time: {
     fontSize: 14,
-    color: '#ddd',
+    color: "#ddd",
     marginTop: 5,
   },
   title5: {
     fontSize: 15,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
-    color: '#FFFFFF',
+    color: "#FFFFFF",
   },
   item: {
     width: 250,
@@ -271,7 +308,7 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 10,
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   image5: {
     flex: 1,
@@ -281,16 +318,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   navigationBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#222', // Màu nền
+    flexDirection: "row",
+    justifyContent: "space-around",
+    backgroundColor: "#222", // Màu nền
     paddingVertical: 10,
   },
   tab: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   tabText: {
-    color: 'white',
+    color: "white",
     fontSize: 12,
   },
 });

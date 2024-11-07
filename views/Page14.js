@@ -1,15 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
-
-
 export default function Page14() {
     const navigation = useNavigation();
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
             <View style={styles.container}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Ionicons name="arrow-back" size={24} color="white" />
@@ -44,15 +42,14 @@ export default function Page14() {
                     <Text style={styles.tabText}>Profile</Text>
                 </TouchableOpacity>
             </View>
-        </SafeAreaView>
-    )
+        </View>
+    );
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#222', // Màu nền tối
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
     title: {
         fontSize: 24,
@@ -60,27 +57,27 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginBottom: 20,
         marginTop: 50,
-        marginLeft: 10
+        marginLeft: 10,
     },
     description1: {
         fontSize: 24,
         color: '#fff',
         textAlign: 'left',
         marginBottom: 10,
-        marginLeft: 30
+        marginLeft: 30,
     },
     description2: {
         fontSize: 16,
         color: 'gray',
         textAlign: 'left',
-        marginLeft: 30
+        marginLeft: 30,
     },
     description3: {
         fontSize: 16,
         color: 'gray',
         marginBottom: 10,
         textAlign: 'left',
-        marginLeft: 30
+        marginLeft: 30,
     },
     button: {
         backgroundColor: '#222',
