@@ -62,11 +62,21 @@ export default function Page06() {
   //   },
   // ];
   const [nearby, setNearby] = useState([]);
+  const [home, setHome] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/nearby/") 
       .then((response) => setNearby(response.data.nearby))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/home/") 
+      .then((response) => {
+        setHome(response.data.homes)
+      })
       .catch((err) => console.log(err));
   }, []);
   const places = [
@@ -93,9 +103,9 @@ export default function Page06() {
     </TouchableOpacity>
   );
   const renderItem1 = ({ item }) => (
-    <TouchableOpacity style={styles.item}>
-      <Image source={item.image} style={styles.image5} />
-      <Text style={styles.title5}>{item.title1}</Text>
+    <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('PageScreenViewProduct', { product: item })}>
+      <Image source={{ uri: `http://localhost:3000/${item.homeImage}` }} style={styles.image5} />
+      <Text style={styles.title5}>{item.name}</Text>
     </TouchableOpacity>
   );
   return (
@@ -133,20 +143,14 @@ export default function Page06() {
           />
           <Text style={styles.subtitle}>Live anywhere</Text>
           <FlatList
-            data={places}
+            data={home}
             keyExtractor={(item, index) => index.toString()}
             renderItem={renderItem1}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
           <Text style={styles.subtitle}>My love</Text>
-           <FlatList
-            data={places}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={renderItem1}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          />
+           
         </View>
       </ScrollView>
       <View style={styles.navigationBar}>
