@@ -14,51 +14,61 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Page06() {
   const navigation = useNavigation();
-  const nearbyPlaces = [
-    {
-      Image: require("../images/image29.png"),
-      title: "Los Angeles",
-      time: "15 minute drive",
-    },
-    {
-      Image: require("../images/image30.png"),
-      title: "Las Vegas",
-      time: "5 hours",
-    },
-    {
-      Image: require("../images/image31.png"),
-      title: "San Diego",
-      time: "2.5 hour drive",
-    },
-    {
-      Image: require("../images/image32.png"),
-      title: "Henderson",
-      time: "5.5 hours",
-    },
-    {
-      Image: require("../images/image29.png"),
-      title: "Los Angeles",
-      time: "15 minute drive",
-    },
-    {
-      Image: require("../images/image30.png"),
-      title: "Las Vegas",
-      time: "5 hours",
-    },
-    {
-      Image: require("../images/image31.png"),
-      title: "San Diego",
-      time: "2.5 hour drive",
-    },
-    {
-      Image: require("../images/image32.png"),
-      title: "Henderson",
-      time: "5.5 hours",
-    },
-  ];
+  // const nearbyPlaces = [
+  //   {
+  //     Image: require("../images/image29.png"),
+  //     title: "Los Angeles",
+  //     time: "15 minute drive",
+  //   },
+  //   {
+  //     Image: require("../images/image30.png"),
+  //     title: "Las Vegas",
+  //     time: "5 hours",
+  //   },
+  //   {
+  //     Image: require("../images/image31.png"),
+  //     title: "San Diego",
+  //     time: "2.5 hour drive",
+  //   },
+  //   {
+  //     Image: require("../images/image32.png"),
+  //     title: "Henderson",
+  //     time: "5.5 hours",
+  //   },
+  //   {
+  //     Image: require("../images/image29.png"),
+  //     title: "Los Angeles",
+  //     time: "15 minute drive",
+  //   },
+  //   {
+  //     Image: require("../images/image30.png"),
+  //     title: "Las Vegas",
+  //     time: "5 hours",
+  //   },
+  //   {
+  //     Image: require("../images/image31.png"),
+  //     title: "San Diego",
+  //     time: "2.5 hour drive",
+  //   },
+  //   {
+  //     Image: require("../images/image32.png"),
+  //     title: "Henderson",
+  //     time: "5.5 hours",
+  //   },
+  // ];
+  const [nearby, setNearby] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/nearby/") 
+      .then((response) => setNearby(response.data.nearby))
+      .catch((err) => console.log(err));
+  }, []);
   const places = [
     {
       image: require("../images/image33.png"),
@@ -74,19 +84,19 @@ export default function Page06() {
     },
   ];
   const renderItem = ({ item }) => (
-    <View style={styles.card}>
-      <Image source={item.Image} style={styles.image} />
+    <TouchableOpacity style={styles.card}>
+      <Image source={{ uri: `http://localhost:3000/${item.nearbyImage}` }} style={styles.image} />
       <View style={styles.infoContainer}>
-        <Text style={styles.title4}>{item.title}</Text>
-        <Text style={styles.time}>{item.time}</Text>
+        <Text style={styles.title4}>{item.name}</Text>
+        <Text style={styles.time}>{item.title}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
   const renderItem1 = ({ item }) => (
-    <View style={styles.item}>
+    <TouchableOpacity style={styles.item}>
       <Image source={item.image} style={styles.image5} />
       <Text style={styles.title5}>{item.title1}</Text>
-    </View>
+    </TouchableOpacity>
   );
   return (
     <View style={styles.container}>
@@ -115,7 +125,7 @@ export default function Page06() {
         <View style={styles.content1}>
           <Text style={styles.subtitle}>Explore nearby</Text>
           <FlatList
-            data={nearbyPlaces}
+            data={nearby}
             keyExtractor={(item, index) => index.toString()}
             renderItem={renderItem}
             horizontal={true}
