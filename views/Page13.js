@@ -48,6 +48,22 @@ export default function Page13() {
       title:"Anytime",
       name: "London in the sun",
     },
+    {
+        id: 3,
+        imageBig: require("../images/image18.png"),
+        image1: require("../images/image19.png"),
+        image2: require("../images/image21.png"),
+        title:"Anytime",
+        name: "VietNam in the sun",
+      },
+      {
+        id: 4,
+        imageBig: require("../images/image22.png"),
+        image1: require("../images/image23.png"),
+        image2: require("../images/image24.png"),
+        title:"Anytime",
+        name: "ThaiLand in the sun",
+      },
   ];
 
   return (

@@ -129,6 +129,14 @@ export default function Page06() {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
+          <Text style={styles.subtitle}>My love</Text>
+           <FlatList
+            data={places}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={renderItem1}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
         </View>
       </ScrollView>
       <View style={styles.navigationBar}>
@@ -282,10 +290,10 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   title5: {
-    fontSize: 15,
-    fontWeight: "bold",
+    fontSize: 18,
     marginBottom: 10,
     color: "#FFFFFF",
+    marginTop:10
   },
   item: {
     width: 250,

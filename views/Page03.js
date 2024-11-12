@@ -18,13 +18,11 @@ import {
         <View style={styles.container}>
           <Text style={[styles.textLSU, styles.color]}>Log in or sign Up</Text>
           <View style={styles.content}>
-            <Text style={[styles.textCP, styles.color]}>Country/Region</Text>
+            <Text style={[styles.textCP, styles.color]}>Email</Text>
             <TextInput
               style={styles.input}
-              placeholder="Singapore(+65)"
-              placeholderTextColor="white"
             ></TextInput>
-            <Text style={[styles.textCP, styles.color]}>Phone Number</Text>
+            <Text style={[styles.textCP, styles.color]}>Password</Text>
             <TextInput style={styles.input}></TextInput>
           </View>
           <Text style={[styles.textTitle, styles.color]}>

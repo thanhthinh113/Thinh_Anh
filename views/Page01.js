@@ -17,7 +17,7 @@ export default function Page01() {
         <Image source={require("../images/Vector.png")} />
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Page02")}
+          onPress={() => navigation.navigate("Page03")}
         >
           <Text style={styles.text}>Get Start</Text>
         </TouchableOpacity>
