@@ -14,7 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 // CardItem Component
 function CardItem({ imageBig, image1, image2, name, title }) {
   return (
-    <View style={styles.cardContainer}>
+    <TouchableOpacity style={styles.cardContainer}>
       <View style={styles.allImage}>
         <Image source={imageBig} style={styles.imageBig} />
         <View style={styles.imageRow}>
@@ -24,7 +24,7 @@ function CardItem({ imageBig, image1, image2, name, title }) {
       </View>
       <Text style={styles.cardTitle}>{title}</Text>
       <Text style={styles.cardName}>{name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 
