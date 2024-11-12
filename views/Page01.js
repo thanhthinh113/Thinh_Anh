@@ -13,6 +13,7 @@ export default function Page01() {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.safeArea}>
+      <StatusBar barStyle="light-content" backgroundColor="black" />
       <View style={styles.container}>
         <Image source={require("../images/Vector.png")} />
         <TouchableOpacity

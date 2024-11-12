@@ -1,90 +1,91 @@
+import React, { useState } from "react";
 import {
   SafeAreaView,
   Text,
   View,
   StyleSheet,
-  StatusBar,
-  Image,
-  TouchableOpacity,
   TextInput,
+  TouchableOpacity,
+  Alert,
 } from "react-native";
+import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome, AntDesign } from "@expo/vector-icons"; // Import icons
 
-export default function Page01() {
+export default function Signup() {
   const navigation = useNavigation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSignup = async () => {
+    if (password !== confirmPassword) {
+      Alert.alert("Mật khẩu không khớp", "Vui lòng kiểm tra lại mật khẩu.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:3000/user/signup", {
+        email,
+        password,
+      });
+
+      if (response.status === 201) {
+        Alert.alert("Đăng ký thành công", "Bạn có thể đăng nhập ngay bây giờ.");
+        navigation.goBack(); // Quay về màn hình trước đó
+      }
+    } catch (error) {
+      Alert.alert("Đăng ký thất bại", "Email đã tồn tại hoặc có lỗi xảy ra.");
+    }
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <Text style={[styles.textLSU, styles.color]}>Log in or sign Up</Text>
-        <View style={styles.content}>
-          <Text style={[styles.textCP, styles.color]}>Email</Text>
-          <TextInput
-            style={styles.input}
-          ></TextInput>
-          <Text style={[styles.textCP, styles.color]}>Password</Text>
-          <TextInput style={styles.input}></TextInput>
-        </View>
-        <Text style={[styles.textTitle, styles.color]}>
-          We’ll call or text you to confirm your number. Standard message and
-          data rates apply.
-        </Text>
-        <TouchableOpacity style={[styles.button, styles.margin]} onPress={()=>navigation.navigate("Page04")}>
-          <Text style={styles.text}>Continue</Text>
-        </TouchableOpacity>
-        <Text style={[styles.textor, styles.color, styles.text]}>or</Text>
-
-        <TouchableOpacity
-          style={[styles.button, styles.iconButton, styles.outlinedButton]}
-        >
-          <FontAwesome
-            name="envelope"
-            size={24}
-            color="white"
-            style={styles.icon}
-          />
-          <Text style={[styles.text, styles.color]}>CONTINUE WITH EMAIL</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.button, styles.iconButton, styles.outlinedButton]}
-        >
-          <AntDesign
-            name="apple1"
-            size={24}
-            color="white"
-            style={styles.icon}
-          />
-          <Text style={[styles.text, styles.color]}>CONTINUE WITH APPLE</Text>
+        <Text style={[styles.textLSU, styles.color]}>Sign Up</Text>
+        <Text style={[styles.textCP, styles.color]}>Email</Text>
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          placeholder="Nhập email"
+          placeholderTextColor="#999"
+          autoCapitalize="none"  // Prevents auto-capitalization
+          autoCorrect={false}
+        />
+        <Text style={[styles.textCP, styles.color]}>Password</Text>
+        <TextInput
+          style={styles.input}
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Nhập mật khẩu"
+          placeholderTextColor="#999"
+          secureTextEntry={true}
+          autoCapitalize="none"  // Prevents auto-capitalization
+          autoCorrect={false}
+        />
+        <Text style={[styles.textCP, styles.color]}>Confirm Password</Text>
+        <TextInput
+          style={styles.input}
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          placeholder="Nhập lại mật khẩu"
+          placeholderTextColor="#999"
+          secureTextEntry={true}
+          autoCapitalize="none"  // Prevents auto-capitalization
+          autoCorrect={false}
+        />
+        <TouchableOpacity style={[styles.button, styles.margin]} onPress={handleSignup}>
+          <Text style={styles.text}>Sign Up</Text>
         </TouchableOpacity>
 
+        {/* Nút quay về đăng nhập */}
         <TouchableOpacity
-          style={[styles.button, styles.iconButton, styles.outlinedButton]}
+          style={styles.backToLogin}
+          onPress={() => navigation.goBack()}
         >
-          <AntDesign
-            name="google"
-            size={24}
-            color="white"
-            style={styles.icon}
-          />
-          <Text style={[styles.text, styles.color]}>CONTINUE WITH GOOGLE</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, styles.iconButton, styles.outlinedButton]}
-        >
-          <FontAwesome
-            name="facebook"
-            size={24}
-            color="white"
-            style={styles.icon}
-          />
-          <Text style={[styles.text, styles.color]}>
-            CONTINUE WITH FACEBOOK
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.login} onPress={()=>navigation.navigate("Page03")}>
-          <Text style={[styles.textLog, styles.color, styles.text]}>
-            LOG IN
+          <Text style={[styles.textLog, styles.color]}>
+            Quay về Đăng nhập
           </Text>
         </TouchableOpacity>
       </View>
@@ -115,57 +116,37 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 5,
   },
-  textTitle: {
-    marginTop: 5,
-  },
-  content: {
-    width: "100%",
-  },
   input: {
     backgroundColor: "#414141",
     width: "100%",
     borderRadius: 6,
     padding: 20,
     marginBottom: 10,
+    color: "white",
   },
   button: {
     padding: 15,
     borderRadius: 50,
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 10,
-    position: "relative",
-  },
-  outlinedButton: {
-    borderColor: "white", // Viền màu đen
-    borderWidth: 0.5, // Độ rộng của viền
-  },
-  icon: {
-    position: "absolute",
-    left: 20,
+    marginBottom: 20,
+    backgroundColor: "#57B65F",
   },
   text: {
     fontSize: 16,
     fontWeight: "bold",
-  },
-  textor: {
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  iconButton: {
-    marginBottom: 10,
+    color: "white",
   },
   margin: {
     marginTop: 20,
-    marginBottom: 20,
-    backgroundColor: "#57B65F", // Màu xanh cho nút "Continue" chính
-    color: "white",
+  },
+  backToLogin: {
+    marginTop: 20,
+    alignItems: "center",
   },
   textLog: {
+    fontSize: 16,
     textAlign: "center",
-  },
-  login: {
-    marginTop: 20,
+    color: "white",
   },
 });
