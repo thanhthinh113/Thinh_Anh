@@ -1,14 +1,18 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Animated, PanResponder, Image, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome5 } from '@expo/vector-icons';
 
-
 export default function Page17() {
     const navigation = useNavigation();
+
+    const handleLogout = () => {
+        navigation.navigate("Page03"); 
+    };
+
     return (
         <View style={styles.container}>
-            <ScrollView style={styles.container1} >
+            <ScrollView style={styles.container1}>
                 <View style={styles.header}>
                     <TouchableOpacity style={styles.profileContainer}>
                         <Image
@@ -19,7 +23,6 @@ export default function Page17() {
                             <Text style={styles.profileName}>Arshia</Text>
                             <Text style={styles.profileSubtitle}>Show profile</Text>
                         </View>
-
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.arrowContainer}>
                         <Image
@@ -122,14 +125,20 @@ export default function Page17() {
                         </TouchableOpacity>
                     </View>
 
+                    {/* Log out button */}
+                    <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+                        <Text style={styles.logoutText}>Log out</Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
+
+            {/* Navigation bar */}
             <View style={styles.navigationBar}>
                 <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate("Page06")}>
                     <FontAwesome5 name="search" size={24} color="white" />
                     <Text style={styles.tabText}>Explore</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate("Page13")} >
+                <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate("Page13")}>
                     <FontAwesome5 name="heart" size={24} color="white" />
                     <Text style={styles.tabText}>Wishlists</Text>
                 </TouchableOpacity>
@@ -147,9 +156,9 @@ export default function Page17() {
                 </TouchableOpacity>
             </View>
         </View>
-
     );
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -225,10 +234,21 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: '#FFFFFF99'
     },
+    logoutButton: {
+        alignItems: 'center',
+        paddingVertical: 15,
+        marginTop: 20,
+        backgroundColor: 'red',
+    },
+    logoutText: {
+        fontSize: 18,
+        color: 'white',
+        fontWeight:"bold"
+    },
     navigationBar: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        backgroundColor: '#222', // Màu nền
+        backgroundColor: '#222',
         paddingVertical: 10,
     },
     tab: {
