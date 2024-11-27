@@ -104,13 +104,13 @@ export default function Page13() {
           <FontAwesome5 name="heart" size={24} color="white" />
           <Text style={styles.tabText}>Wishlists</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.tab}
           onPress={() => navigation.navigate("Page14")}
         >
           <FontAwesome5 name="plane-departure" size={24} color="white" />
           <Text style={styles.tabText}>Trips</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           style={styles.tab}
           onPress={() => navigation.navigate("Page15")}
@@ -120,11 +120,21 @@ export default function Page13() {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tab}
+          onPress={() => navigation.navigate("CartPage")}
+        >
+          <FontAwesome5 name="shopping-cart" size={24} color="white" />
+          <Text style={styles.tabText}>Card</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          style={styles.tab}
           onPress={() => navigation.navigate("Page17")}
         >
           <FontAwesome5 name="user" size={24} color="white" />
           <Text style={styles.tabText}>Profile</Text>
         </TouchableOpacity>
+
+        
       </View>
     </View>
   );

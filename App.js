@@ -18,6 +18,10 @@ import Page15 from "./views/Page15";
 import Page16 from "./views/Page16";
 import Page17 from "./views/Page17";
 import PageScreenViewProduct from "./views/PageScreenViewProduct";
+import CartPage from "./views/CartPage";
+import CheckoutPage from "./views/CheckoutPage";
+import MapViewPage from "./views/MapViewPage";
+
 
 
 const Stack= createNativeStackNavigator()
@@ -43,6 +47,11 @@ export default function App() {
         <Stack.Screen name="Page15" component={Page15} options={{headerShown:false}}/>
         <Stack.Screen name="Page16" component={Page16} options={{headerShown:false}}/>
         <Stack.Screen name="Page17" component={Page17} options={{headerShown:false}}/>
+        <Stack.Screen name="CartPage" component={CartPage} options={{headerShown:false}}/>
+        <Stack.Screen name="CheckoutPage" component={CheckoutPage} options={{headerShown:false}}/>
+        <Stack.Screen name="MapViewPage" component={MapViewPage} options={{headerShown:false}}/>
+
+
         <Stack.Screen name="PageScreenViewProduct" component={PageScreenViewProduct} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>

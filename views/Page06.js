@@ -94,7 +94,16 @@ export default function Page06() {
     },
   ];
   const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity 
+      style={styles.card}
+      onPress={() => navigation.navigate('MapViewPage', { 
+        location: { 
+          latitude: item.latitude, 
+          longitude: item.longitude 
+        }, 
+        title: item.name 
+      })}
+    >
       <Image source={{ uri: `http://localhost:3000/${item.nearbyImage}` }} style={styles.image} />
       <View style={styles.infoContainer}>
         <Text style={styles.title4}>{item.name}</Text>
@@ -102,6 +111,7 @@ export default function Page06() {
       </View>
     </TouchableOpacity>
   );
+  
   const renderItem1 = ({ item }) => (
     <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('PageScreenViewProduct', { product: item })}>
       <Image source={{ uri: `http://localhost:3000/${item.homeImage}` }} style={styles.image5} />
@@ -168,13 +178,13 @@ export default function Page06() {
           <FontAwesome5 name="heart" size={24} color="white" />
           <Text style={styles.tabText}>Wishlists</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.tab}
           onPress={() => navigation.navigate("Page14")}
         >
           <FontAwesome5 name="plane-departure" size={24} color="white" />
           <Text style={styles.tabText}>Trips</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           style={styles.tab}
           onPress={() => navigation.navigate("Page15")}
@@ -184,11 +194,21 @@ export default function Page06() {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tab}
+          onPress={() => navigation.navigate("CartPage")}
+        >
+          <FontAwesome5 name="shopping-cart" size={24} color="white" />
+          <Text style={styles.tabText}>Card</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          style={styles.tab}
           onPress={() => navigation.navigate("Page17")}
         >
           <FontAwesome5 name="user" size={24} color="white" />
           <Text style={styles.tabText}>Profile</Text>
         </TouchableOpacity>
+
+        
       </View>
     </View>
   );

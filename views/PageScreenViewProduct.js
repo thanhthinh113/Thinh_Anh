@@ -32,9 +32,16 @@ export default function PageScreenViewProduct({ route }) {
         <Text style={styles.description}>{product.title}</Text>
       </ScrollView>
 
-      <TouchableOpacity style={styles.reserveButton} onPress={() => console.log('Reserve button clicked')}>
-        <Text style={styles.reserveButtonText}>Reserve</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+  <TouchableOpacity style={styles.reserveButton} onPress={() => console.log('Reserve button clicked')}>
+    <Text style={styles.reserveButtonText}>Reserve</Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity style={styles.messageButton} onPress={() => console.log('Message button clicked')}>
+    <Ionicons name="chatbubble-outline" size={20} color="white" />
+  </TouchableOpacity>
+</View>
+
     </View>
   );
 }
@@ -101,14 +108,35 @@ const styles = StyleSheet.create({
     marginTop: 12,
     textAlign: 'justify',
   },
-  reserveButton: {
+  buttonContainer: {
     position: 'absolute',
     bottom: 20,
     left: 20,
     right: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  
+  reserveButton: {
+    flex: 1,
     backgroundColor: '#007aff',
     paddingVertical: 15,
     borderRadius: 10,
+    alignItems: 'center',
+    marginRight: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
+  
+  messageButton: {
+    width: 50,
+    height: 50,
+    backgroundColor: '#333',
+    borderRadius: 10,
+    justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -116,12 +144,14 @@ const styles = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 5,
   },
+  
   reserveButtonText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
     letterSpacing: 0.5,
   },
+  
   tienich:{
     marginTop:10
   }
