@@ -134,27 +134,52 @@ export default function Page17() {
 
             {/* Navigation bar */}
             <View style={styles.navigationBar}>
-                <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate("Page06")}>
-                    <FontAwesome5 name="search" size={24} color="white" />
-                    <Text style={styles.tabText}>Explore</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate("Page13")}>
-                    <FontAwesome5 name="heart" size={24} color="white" />
-                    <Text style={styles.tabText}>Wishlists</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate("Page14")}>
-                    <FontAwesome5 name="plane-departure" size={24} color="white" />
-                    <Text style={styles.tabText}>Trips</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate("Page15")}>
-                    <FontAwesome5 name="comment" size={24} color="white" />
-                    <Text style={styles.tabText}>Inbox</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate("Page17")}>
-                    <FontAwesome5 name="user" size={24} color="white" />
-                    <Text style={styles.tabText}>Profile</Text>
-                </TouchableOpacity>
-            </View>
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("Page06")}
+        >
+          <FontAwesome5 name="search" size={24} color="white" />
+          <Text style={styles.tabText}>Explore</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("Page13")}
+        >
+          <FontAwesome5 name="heart" size={24} color="white" />
+          <Text style={styles.tabText}>Wishlists</Text>
+        </TouchableOpacity>
+        {/* <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("Page14")}
+        >
+          <FontAwesome5 name="plane-departure" size={24} color="white" />
+          <Text style={styles.tabText}>Trips</Text>
+        </TouchableOpacity> */}
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("Page15")}
+        >
+          <FontAwesome5 name="comment" size={24} color="white" />
+          <Text style={styles.tabText}>Inbox</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("CartPage")}
+        >
+          <FontAwesome5 name="shopping-cart" size={24} color="white" />
+          <Text style={styles.tabText}>Card</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("Page17")}
+        >
+          <FontAwesome5 name="user" size={24} color="white" />
+          <Text style={styles.tabText}>Profile</Text>
+        </TouchableOpacity>
+
+        
+      </View>
         </View>
     );
 }
