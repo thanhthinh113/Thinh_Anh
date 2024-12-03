@@ -17,7 +17,28 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const validateEmail = (email) => {
+    // Kiểm tra email hợp lệ với biểu thức chính quy
+    const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return re.test(email);
+  };
+
+  const validatePassword = (password) => {
+    // Kiểm tra mật khẩu có ít nhất 6 ký tự
+    return password.length >= 6;
+  };
+
   const handleSignup = async () => {
+    if (!validateEmail(email)) {
+      Alert.alert("Email không hợp lệ", "Vui lòng nhập email hợp lệ.");
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      Alert.alert("Mật khẩu không đủ mạnh", "Mật khẩu cần ít nhất 6 ký tự.");
+      return;
+    }
+
     if (password !== confirmPassword) {
       Alert.alert("Mật khẩu không khớp", "Vui lòng kiểm tra lại mật khẩu.");
       return;
