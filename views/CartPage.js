@@ -54,9 +54,8 @@ export default function CartPage() {
   };
 
   const handleCheckout = () => {
-    // Đoạn mã xử lý thanh toán hoặc chuyển hướng
-    console.log('Proceeding to checkout...');
-    // navigation.navigate('CheckoutScreen'); // Ví dụ chuyển hướng tới màn hình thanh toán
+    const totalPrice = calculateTotalPrice();
+    navigation.navigate('CheckoutPage', { orders, totalPrice });
   };
 
   const renderOrderItem = ({ item }) => (
@@ -123,6 +122,7 @@ export default function CartPage() {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
