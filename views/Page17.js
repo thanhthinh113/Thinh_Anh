@@ -2,10 +2,19 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
-export default function Page17() {
+export default function Page17({route}) {
     const navigation = useNavigation();
+    const [email, setEmail] = useState(null);
 
+    useEffect(() => {
+      if (route.params && route.params.email) {
+        setEmail(route.params.email);
+      }
+    }, [route.params]);
+  
     const handleLogout = () => {
         navigation.navigate("Page03"); 
     };
@@ -20,7 +29,7 @@ export default function Page17() {
                             style={styles.profileImage}
                         />
                         <View style={styles.header1}>
-                            <Text style={styles.profileName}>Arshia</Text>
+                            <Text style={styles.profileName}>{email}</Text>
                             <Text style={styles.profileSubtitle}>Show profile</Text>
                         </View>
                     </TouchableOpacity>
@@ -212,7 +221,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     profileName: {
-        fontSize: 32,
+        fontSize: 20,
         color: '#FFFFFF'
     },
     profileSubtitle: {

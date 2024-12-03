@@ -26,8 +26,9 @@ export default function Page03() {
       });
       if (response.status === 200) {
         Alert.alert('Đăng nhập thành công!');
-        navigation.navigate('Page06'); // Điều hướng đến màn hình Page
-      } 
+        // Pass email to Page17 (Profile Page)
+        navigation.navigate('Page17', { email: email });
+      }
     } catch (error) {
       if (error.response && error.response.status === 401) {
         Alert.alert("Đăng nhập thất bại", "Email hoặc mật khẩu không chính xác");
@@ -183,8 +184,8 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   outlinedButton: {
-    borderColor: "white", // Viền màu đen
-    borderWidth: 0.5, // Độ rộng của viền
+    borderColor: "white", 
+    borderWidth: 0.5, 
   },
   icon: {
     position: "absolute",
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
   margin: {
     marginTop: 20,
     marginBottom: 20,
-    backgroundColor: "#57B65F", // Màu xanh cho nút "Continue" chính
+    backgroundColor: "#57B65F", 
     color: "white",
   },
   textLog: {
