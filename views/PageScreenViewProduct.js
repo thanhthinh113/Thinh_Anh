@@ -2,10 +2,27 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 export default function PageScreenViewProduct({ route }) {
   const { product } = route.params;
   const navigation = useNavigation();
+
+  const handleReserve = () => {
+    // Gửi dữ liệu đơn hàng đến backend
+    axios.post('http://localhost:3000/orders', {
+      homeId: product._id, // Sử dụng ID của product
+      quantity: 1, // Số lượng mặc định là 1
+    })
+    .then(response => {
+      console.log('Order placed successfully:', response.data);
+      // Điều hướng đến trang giỏ hàng
+      navigation.navigate('CartPage');
+    })
+    .catch(error => {
+      console.error('Error placing order:', error);
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -33,15 +50,14 @@ export default function PageScreenViewProduct({ route }) {
       </ScrollView>
 
       <View style={styles.buttonContainer}>
-  <TouchableOpacity style={styles.reserveButton} onPress={() => console.log('Reserve button clicked')}>
-    <Text style={styles.reserveButtonText}>Reserve</Text>
-  </TouchableOpacity>
+        <TouchableOpacity style={styles.reserveButton} onPress={handleReserve}>
+          <Text style={styles.reserveButtonText}>Reserve</Text>
+        </TouchableOpacity>
 
-  <TouchableOpacity style={styles.messageButton} onPress={() => console.log('Message button clicked')}>
-    <Ionicons name="chatbubble-outline" size={20} color="white" />
-  </TouchableOpacity>
-</View>
-
+        <TouchableOpacity style={styles.messageButton} onPress={() => console.log('Message button clicked')}>
+          <Ionicons name="chatbubble-outline" size={20} color="white" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
