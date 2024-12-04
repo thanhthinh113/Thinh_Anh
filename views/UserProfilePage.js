@@ -36,6 +36,21 @@ export default function UserProfilePage({ route, navigation }) {
   }, [email]);
 
   const handleSave = () => {
+    if (!name.trim()) {
+        Alert.alert('Validation Error', 'Yêu cầu nhập tên');
+        return;
+      }
+    
+      // Vietnamese phone number validation
+      if (!/^0\d{9,10}$/.test(phone)) {
+        Alert.alert('Validation Error', 'Số điện thoại phải bắt đầu là số 0 và chứa 10 đến 11 số');
+        return;
+      }
+    
+      if (!address.trim()) {
+        Alert.alert('Validation Error', 'Yêu cầu nhập địa chỉ');
+        return;
+      }
     const userData = {
       name: name,
       phone: phone,
