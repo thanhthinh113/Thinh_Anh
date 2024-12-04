@@ -1,148 +1,159 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+import React from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome5 } from '@expo/vector-icons';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { FontAwesome5 } from "@expo/vector-icons";
+import { useEffect } from "react";
+import { useState } from "react";
 
-export default function Page17({route}) {
-    const navigation = useNavigation();
-    const [email, setEmail] = useState(null);
+export default function Page17({ route }) {
+  const navigation = useNavigation();
+  const [email, setEmail] = useState(null);
+  useEffect(() => {
+    if (route.params && route.params.email) {
+      setEmail(route.params.email);
+    }
+  }, [route.params]);
 
-    useEffect(() => {
-      if (route.params && route.params.email) {
-        setEmail(route.params.email);
-      }
-    }, [route.params]);
-  
-    const handleLogout = () => {
-        navigation.navigate("Page03"); 
-    };
+  const handleLogout = () => {
+    navigation.navigate("Page03");
+  };
 
-    return (
-        <View style={styles.container}>
-            <ScrollView style={styles.container1}>
-                <View style={styles.header}>
-                    <TouchableOpacity style={styles.profileContainer}>
-                        <Image
-                            source={require('../images/image 27.png')}
-                            style={styles.profileImage}
-                        />
-                        <View style={styles.header1}>
-                            <Text style={styles.profileName}>{email}</Text>
-                            <Text style={styles.profileSubtitle}>Show profile</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.arrowContainer}>
-                        <Image
-                            source={require('../images/Vector 2.png')}
-                            style={styles.arrowIcon}
-                        />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.sectionContainer1}>
-                    <View style={styles.sectionContainer}>
-                        <Text style={styles.sectionTitle}>ACCOUNT SETTINGS</Text>
-                        <TouchableOpacity style={styles.optionContainer}>
-                            <Text style={styles.optionText}>Personal information</Text>
-                            <Image
-                                source={require('../images/Vector 2.png')}
-                                style={styles.arrowIcon}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.optionContainer}>
-                            <Text style={styles.optionText}>Payments and payouts</Text>
-                            <Image
-                                source={require('../images/Vector 2.png')}
-                                style={styles.arrowIcon}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.optionContainer}>
-                            <Text style={styles.optionText}>Notifications</Text>
-                            <Image
-                                source={require('../images/Vector 2.png')}
-                                style={styles.arrowIcon}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.optionContainer}>
-                            <Text style={styles.optionText}>Travel for work</Text>
-                            <Image
-                                source={require('../images/Vector 2.png')}
-                                style={styles.arrowIcon}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.sectionContainer2}>
-                        <Text style={styles.sectionTitle}>HOSTING</Text>
-                        <TouchableOpacity style={styles.optionContainer}>
-                            <Text style={styles.optionText}>List your space </Text>
-                            <Image
-                                source={require('../images/Vector 2.png')}
-                                style={styles.arrowIcon}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.optionContainer}>
-                            <Text style={styles.optionText}>Manage your listings</Text>
-                            <Image
-                                source={require('../images/Vector 2.png')}
-                                style={styles.arrowIcon}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.optionContainer}>
-                            <Text style={styles.optionText}>Host an experience</Text>
-                            <Image
-                                source={require('../images/Vector 2.png')}
-                                style={styles.arrowIcon}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.sectionContainer2}>
-                        <Text style={styles.sectionTitle}>REFERRALS & CREDITS</Text>
-                        <TouchableOpacity style={styles.optionContainer}>
-                            <View>
-                                <Text style={styles.optionText}>Gift card </Text>
-                                <Text style={styles.optionText1}>Send or redeem a gift card </Text>
-                            </View>
-                            <Image
-                                source={require('../images/Vector 2.png')}
-                                style={styles.arrowIcon}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.sectionContainer2}>
-                        <Text style={styles.sectionTitle}>SUPPORT</Text>
-                        <TouchableOpacity style={styles.optionContainer}>
-                            <Text style={styles.optionText}>List your space </Text>
-                            <Image
-                                source={require('../images/Vector 2.png')}
-                                style={styles.arrowIcon}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.optionContainer}>
-                            <Text style={styles.optionText}>Manage your listings</Text>
-                            <Image
-                                source={require('../images/Vector 2.png')}
-                                style={styles.arrowIcon}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.optionContainer}>
-                            <Text style={styles.optionText}>Host an experience</Text>
-                            <Image
-                                source={require('../images/Vector 2.png')}
-                                style={styles.arrowIcon}
-                            />
-                        </TouchableOpacity>
-                    </View>
+  return (
+    <View style={styles.container}>
+      <ScrollView style={styles.container1}>
+        <View style={styles.header}>
+          <TouchableOpacity
+            style={styles.profileContainer}
+            onPress={() => navigation.navigate("UserProfilePage", { email })}
+          >
+            <Image
+              source={require("../images/image 27.png")}
+              style={styles.profileImage}
+            />
+            <View style={styles.header1}>
+              <Text style={styles.profileName}>{email}</Text>
+              <Text style={styles.profileSubtitle}>Show profile</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.arrowContainer}>
+            <Image
+              source={require("../images/Vector 2.png")}
+              style={styles.arrowIcon}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.sectionContainer1}>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>ACCOUNT SETTINGS</Text>
+            <TouchableOpacity style={styles.optionContainer}>
+              <Text style={styles.optionText}>Personal information</Text>
+              <Image
+                source={require("../images/Vector 2.png")}
+                style={styles.arrowIcon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.optionContainer}>
+              <Text style={styles.optionText}>Payments and payouts</Text>
+              <Image
+                source={require("../images/Vector 2.png")}
+                style={styles.arrowIcon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.optionContainer}>
+              <Text style={styles.optionText}>Notifications</Text>
+              <Image
+                source={require("../images/Vector 2.png")}
+                style={styles.arrowIcon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.optionContainer}>
+              <Text style={styles.optionText}>Travel for work</Text>
+              <Image
+                source={require("../images/Vector 2.png")}
+                style={styles.arrowIcon}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.sectionContainer2}>
+            <Text style={styles.sectionTitle}>HOSTING</Text>
+            <TouchableOpacity style={styles.optionContainer}>
+              <Text style={styles.optionText}>List your space </Text>
+              <Image
+                source={require("../images/Vector 2.png")}
+                style={styles.arrowIcon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.optionContainer}>
+              <Text style={styles.optionText}>Manage your listings</Text>
+              <Image
+                source={require("../images/Vector 2.png")}
+                style={styles.arrowIcon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.optionContainer}>
+              <Text style={styles.optionText}>Host an experience</Text>
+              <Image
+                source={require("../images/Vector 2.png")}
+                style={styles.arrowIcon}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.sectionContainer2}>
+            <Text style={styles.sectionTitle}>REFERRALS & CREDITS</Text>
+            <TouchableOpacity style={styles.optionContainer}>
+              <View>
+                <Text style={styles.optionText}>Gift card </Text>
+                <Text style={styles.optionText1}>
+                  Send or redeem a gift card{" "}
+                </Text>
+              </View>
+              <Image
+                source={require("../images/Vector 2.png")}
+                style={styles.arrowIcon}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.sectionContainer2}>
+            <Text style={styles.sectionTitle}>SUPPORT</Text>
+            <TouchableOpacity style={styles.optionContainer}>
+              <Text style={styles.optionText}>List your space </Text>
+              <Image
+                source={require("../images/Vector 2.png")}
+                style={styles.arrowIcon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.optionContainer}>
+              <Text style={styles.optionText}>Manage your listings</Text>
+              <Image
+                source={require("../images/Vector 2.png")}
+                style={styles.arrowIcon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.optionContainer}>
+              <Text style={styles.optionText}>Host an experience</Text>
+              <Image
+                source={require("../images/Vector 2.png")}
+                style={styles.arrowIcon}
+              />
+            </TouchableOpacity>
+          </View>
 
-                    {/* Log out button */}
-                    <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-                        <Text style={styles.logoutText}>Log out</Text>
-                    </TouchableOpacity>
-                </View>
-            </ScrollView>
+          {/* Log out button */}
+          <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+            <Text style={styles.logoutText}>Log out</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
 
-            {/* Navigation bar */}
-            <View style={styles.navigationBar}>
+      {/* Navigation bar */}
+      <View style={styles.navigationBar}>
         <TouchableOpacity
           style={styles.tab}
           onPress={() => navigation.navigate("Page06")}
@@ -178,7 +189,7 @@ export default function Page17({route}) {
           <FontAwesome5 name="shopping-cart" size={24} color="white" />
           <Text style={styles.tabText}>Card</Text>
         </TouchableOpacity>
-        
+
         <TouchableOpacity
           style={styles.tab}
           onPress={() => navigation.navigate("Page17")}
@@ -186,110 +197,108 @@ export default function Page17({route}) {
           <FontAwesome5 name="user" size={24} color="white" />
           <Text style={styles.tabText}>Profile</Text>
         </TouchableOpacity>
-
-        
       </View>
-        </View>
-    );
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#191919',
-    },
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: 20,
-        marginTop: 50,
-        marginLeft: 20,
-    },
-    header1: {
-        flexDirection: 'column',
-        marginLeft: 10,
-    },
-    profileContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    profileImage: {
-        width: 60,
-        height: 60,
-        borderRadius: 25,
-        marginRight: 10,
-    },
-    profileName: {
-        fontSize: 20,
-        color: '#FFFFFF'
-    },
-    profileSubtitle: {
-        fontSize: 14,
-        color: '#888',
-    },
-    arrowContainer: {
-        justifyContent: 'center',
-    },
-    arrowIcon: {
-        width: 7,
-        height: 14,
-        marginRight: 20,
-    },
-    sectionContainer: {
-        marginBottom: 20,
-        marginTop: 50,
-        marginLeft: 20,
-    },
-    sectionContainer2: {
-        marginBottom: 20,
-        marginLeft: 20,
-        marginTop: 20,
-    },
-    sectionContainer1: {
-        backgroundColor: '#000',
-    },
-    sectionTitle: {
-        fontSize: 14,
-        marginBottom: 10,
-        color: '#FFFFFF99',
-    },
-    optionContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingVertical: 10,
-    },
-    optionText: {
-        fontSize: 18,
-        color: '#FFFFFF'
-    },
-    optionText1: {
-        fontSize: 12,
-        color: '#FFFFFF99'
-    },
-    logoutButton: {
-        alignItems: 'center',
-        paddingVertical: 15,
-        marginTop: 20,
-        backgroundColor: 'red',
-    },
-    logoutText: {
-        fontSize: 18,
-        color: 'white',
-        fontWeight:"bold"
-    },
-    navigationBar: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        backgroundColor: '#222',
-        paddingVertical: 10,
-    },
-    tab: {
-        alignItems: 'center',
-    },
-    tabText: {
-        color: 'white',
-        fontSize: 12,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: "#191919",
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 20,
+    marginTop: 50,
+    marginLeft: 20,
+  },
+  header1: {
+    flexDirection: "column",
+    marginLeft: 10,
+  },
+  profileContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  profileImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 25,
+    marginRight: 10,
+  },
+  profileName: {
+    fontSize: 20,
+    color: "#FFFFFF",
+  },
+  profileSubtitle: {
+    fontSize: 14,
+    color: "#888",
+  },
+  arrowContainer: {
+    justifyContent: "center",
+  },
+  arrowIcon: {
+    width: 7,
+    height: 14,
+    marginRight: 20,
+  },
+  sectionContainer: {
+    marginBottom: 20,
+    marginTop: 50,
+    marginLeft: 20,
+  },
+  sectionContainer2: {
+    marginBottom: 20,
+    marginLeft: 20,
+    marginTop: 20,
+  },
+  sectionContainer1: {
+    backgroundColor: "#000",
+  },
+  sectionTitle: {
+    fontSize: 14,
+    marginBottom: 10,
+    color: "#FFFFFF99",
+  },
+  optionContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 10,
+  },
+  optionText: {
+    fontSize: 18,
+    color: "#FFFFFF",
+  },
+  optionText1: {
+    fontSize: 12,
+    color: "#FFFFFF99",
+  },
+  logoutButton: {
+    alignItems: "center",
+    paddingVertical: 15,
+    marginTop: 20,
+    backgroundColor: "red",
+  },
+  logoutText: {
+    fontSize: 18,
+    color: "white",
+    fontWeight: "bold",
+  },
+  navigationBar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    backgroundColor: "#222",
+    paddingVertical: 10,
+  },
+  tab: {
+    alignItems: "center",
+  },
+  tabText: {
+    color: "white",
+    fontSize: 12,
+  },
 });
