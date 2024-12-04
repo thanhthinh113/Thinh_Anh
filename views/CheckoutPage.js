@@ -6,6 +6,7 @@ export default function CheckoutPage({ route, navigation }) {
   const { orders, totalPrice } = route.params;  // Receive orders and total price from CartPage
   const [fullName, setFullName] = useState('');
   const [shippingAddress, setShippingAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('Cash on Delivery');
   const [discount, setDiscount] = useState(0);  // Discount based on coupon
 
@@ -15,7 +16,7 @@ export default function CheckoutPage({ route, navigation }) {
   };
 
   const handlePlaceOrder = () => {
-    if (!fullName || !shippingAddress) {
+    if (!fullName || !shippingAddress || !phoneNumber) {
       alert('Please enter all required fields.');
       return;
     }
@@ -58,6 +59,13 @@ export default function CheckoutPage({ route, navigation }) {
                 placeholderTextColor="#aaa"
                 value={shippingAddress}
                 onChangeText={setShippingAddress}
+              />
+               <TextInput
+                style={styles.input}
+                placeholder="Phone number"
+                placeholderTextColor="#aaa"
+                value={phoneNumber}
+                onChangeText={setPhoneNumber}
               />
             </View>
           );
