@@ -84,6 +84,7 @@ export default function Signup() {
           secureTextEntry={true}
           autoCapitalize="none"  // Prevents auto-capitalization
           autoCorrect={false}
+          textContentType="none"
         />
         <Text style={[styles.textCP, styles.color]}>Confirm Password</Text>
         <TextInput
@@ -95,6 +96,7 @@ export default function Signup() {
           secureTextEntry={true}
           autoCapitalize="none"  // Prevents auto-capitalization
           autoCorrect={false}
+          textContentType="none"
         />
         <TouchableOpacity style={[styles.button, styles.margin]} onPress={handleSignup}>
           <Text style={styles.text}>Sign Up</Text>
