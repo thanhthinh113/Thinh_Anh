@@ -135,8 +135,8 @@ export default function UserProfilePage({ route, navigation }) {
           style={styles.picker}
           onValueChange={(itemValue) => setGender(itemValue)}
         >
-          <Picker.Item label="Nam" value="Nam" />
-          <Picker.Item label="Nu" value="Nu" />
+          <Picker.Item label="Nam" value="Nam" color='white' />
+          <Picker.Item label="Nữ" value="Nu" color='white'/>
         </Picker>
       </View>
 

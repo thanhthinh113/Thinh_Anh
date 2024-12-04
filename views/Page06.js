@@ -63,19 +63,20 @@ export default function Page06() {
   // ];
   const [nearby, setNearby] = useState([]);
   const [home, setHome] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/nearby/") 
+      .get("http://localhost:3000/nearby/")
       .then((response) => setNearby(response.data.nearby))
       .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/home/") 
+      .get("http://localhost:3000/home/")
       .then((response) => {
-        setHome(response.data.homes)
+        setHome(response.data.homes);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -94,27 +95,40 @@ export default function Page06() {
     },
   ];
   const renderItem = ({ item }) => (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={styles.card}
-      onPress={() => navigation.navigate('MapViewPage', { 
-        location: { 
-          latitude: item.latitude, 
-          longitude: item.longitude 
-        }, 
-        title: item.name 
-      })}
+      onPress={() =>
+        navigation.navigate("MapViewPage", {
+          location: {
+            latitude: item.latitude,
+            longitude: item.longitude,
+          },
+          title: item.name,
+        })
+      }
     >
-      <Image source={{ uri: `http://localhost:3000/${item.nearbyImage}` }} style={styles.image} />
+      <Image
+        source={{ uri: `http://localhost:3000/${item.nearbyImage}` }}
+        style={styles.image}
+      />
       <View style={styles.infoContainer}>
         <Text style={styles.title4}>{item.name}</Text>
         <Text style={styles.time}>{item.title}</Text>
       </View>
     </TouchableOpacity>
   );
-  
+
   const renderItem1 = ({ item }) => (
-    <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('PageScreenViewProduct', { product: item })}>
-      <Image source={{ uri: `http://localhost:3000/${item.homeImage}` }} style={styles.image5} />
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() =>
+        navigation.navigate("PageScreenViewProduct", { product: item })
+      }
+    >
+      <Image
+        source={{ uri: `http://localhost:3000/${item.homeImage}` }}
+        style={styles.image5}
+      />
       <Text style={styles.title5}>{item.name}</Text>
     </TouchableOpacity>
   );
@@ -130,13 +144,23 @@ export default function Page06() {
               placeholder="Where are you going?"
               placeholderTextColor={"#FFFFFF80"}
               style={styles.input}
+              value={searchQuery}
+              onChangeText={(text) => setSearchQuery(text)}
+              onSubmitEditing={() =>
+                navigation.navigate("SearchPage", {
+                  query: searchQuery,
+                  data: home,
+                })
+              }
             />
           </View>
         </View>
 
         <View style={styles.content}>
           <View style={styles.title}>
-            <Text style={styles.title1}>Not sure where to go?{"\n"}Perfect.</Text>
+            <Text style={styles.title1}>
+              Not sure where to go?{"\n"}Perfect.
+            </Text>
           </View>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>I'm flexible</Text>
@@ -160,7 +184,6 @@ export default function Page06() {
             showsHorizontalScrollIndicator={false}
           />
           <Text style={styles.subtitle}>My love</Text>
-           
         </View>
       </ScrollView>
       <View style={styles.navigationBar}>
@@ -199,7 +222,7 @@ export default function Page06() {
           <FontAwesome5 name="shopping-cart" size={24} color="white" />
           <Text style={styles.tabText}>Card</Text>
         </TouchableOpacity>
-        
+
         <TouchableOpacity
           style={styles.tab}
           onPress={() => navigation.navigate("Page17")}
@@ -207,8 +230,6 @@ export default function Page06() {
           <FontAwesome5 name="user" size={24} color="white" />
           <Text style={styles.tabText}>Profile</Text>
         </TouchableOpacity>
-
-        
       </View>
     </View>
   );
@@ -272,6 +293,8 @@ const styles = StyleSheet.create({
     color: "#FFFFFF80",
     padding: 10,
     paddingLeft: 50,
+    width:230,
+    color:"white"
   },
   title: {
     fontSize: 20,
@@ -282,9 +305,9 @@ const styles = StyleSheet.create({
   },
   title1: {
     fontSize: 20,
-    fontWeight:"bold",
+    fontWeight: "bold",
     color: "#FFFFFF",
-    textAlign:"center"
+    textAlign: "center",
   },
   buttonText: {
     color: "#FFFFFF",
@@ -301,14 +324,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     height: 70,
   },
-  title4:{
-    fontWeight:"bold",
-    color:"white"
+  title4: {
+    fontWeight: "bold",
+    color: "white",
   },
   image: {
     width: 80,
     height: 70,
-    borderRadius:4
+    borderRadius: 4,
   },
   infoContainer: {
     padding: 10,
@@ -327,7 +350,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
     color: "#FFFFFF",
-    marginTop:10
+    marginTop: 10,
   },
   item: {
     width: 250,

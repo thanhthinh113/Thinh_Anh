@@ -22,6 +22,7 @@ import CartPage from "./views/CartPage";
 import CheckoutPage from "./views/CheckoutPage";
 import MapViewPage from "./views/MapViewPage";
 import UserProfilePage from "./views/UserProfilePage";
+import SearchPage from "./views/SearchPage";
 
 
 
@@ -52,6 +53,8 @@ export default function App() {
         <Stack.Screen name="CheckoutPage" component={CheckoutPage} options={{headerShown:false}}/>
         <Stack.Screen name="MapViewPage" component={MapViewPage} options={{headerShown:false}}/>
         <Stack.Screen name="UserProfilePage" component={UserProfilePage} options={{headerShown:false}}/>
+        <Stack.Screen name="SearchPage" component={SearchPage} options={{headerShown:false}}/>
+
 
         <Stack.Screen name="PageScreenViewProduct" component={PageScreenViewProduct} options={{headerShown:false}}/>
       </Stack.Navigator>
